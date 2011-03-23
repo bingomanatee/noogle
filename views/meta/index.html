@@ -1,0 +1,17 @@
+<h1>Controllers</h1>
+
+<p>cn count: 
+<%- cn.length %></p>
+
+<h2>Existing Controllers</h2>
+<ul>
+    <% cn.forEach( function(c) { %>
+    <li>
+        <a href="/metas/<%- c %>"><%- c %></a>
+    </li>
+    <% }); %>
+</ul>
+
+<h2>Add New Controller</h2>
+
+<%- form %>

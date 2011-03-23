@@ -1,0 +1,89 @@
+<h1>Page</h1>
+
+
+<dl>
+    <dt>Name</dt>
+    <dd><%- page.name %></dd>
+    <dt>Url</dt>
+    <dd><%- page.url %></dd>
+    <dt>Type</dt>
+    <dd><%- page.type %></dd>
+    <dt>Indexed</dt>
+    <dd><%- page.indexed %></dd>
+</dl>
+<table>
+    <tr>
+<% if (page.hasOwnProperty('txt')){ %>
+        <td width="1*" align="left" valign="top">
+            <h3>Text</h3>
+<pre style="font-size: 50%"><%= page.txt %></pre>
+        </td>
+<% } %>
+<% if (page.hasOwnProperty('links')){ %>
+        <td width="1*" align="left" valign="top">
+            <h3>Links</h3>
+            <ul style="font-size: 50%">
+                <% page.links.forEach(function(link){ %><li><%- link %></li> <% }); %>
+            </ul>
+        </td>
+<% } %>
+    </tr>
+    <tr>
+        <% if (page.hasOwnProperty('comments')){ %>
+        <th>Comments</th>
+        <td>
+        </td>
+        <% } %>
+    </tr>
+    <% if (page.hasOwnProperty('sections')){ %>
+    <tr>
+        <td colspan="3"><dl>
+        <% for (var s in page.sections) { var sec = page.sections[s]; %>
+        <dt><%- sec.name %></dt>
+        <dd><%- sec.content %>
+      <div class="comments_outer">
+        <h3>
+        <b onClick="$('#content_form_<%- s %>_comments').toggle()">
+        <img src="/images/tip.png" /><%- sec.hasOwnProperty('comments') ? sec.comments.length : '' %> comments</b></h3>
+      <div id="content_form_<%- s %>_comments" style="display: none">
+      <% if (sec.hasOwnProperty('comments')){ %>
+        <ol>
+            <% sec.comments.forEach(function(comment){ %>
+            <li><%- comment.text %> -- <%- comment.author %></li>
+            <% }) %>
+        </ol>
+        <% } %>
+      <span onClick="$('#content_form_<%- s %>').toggle()"><img src="/images/tip.png" />Add A Comment</span>
+        <form id="content_form_<%-s %>" method="post" action="/pages/<%- page._id %>/comment" style="display:none">
+        <input type="hidden" name="comment[page]" value="<%- page._id %>" />
+        <input type="hidden" name="comment[id]" value="<%- s %>" />
+        <label><b>Comment:</b></label><br />
+        <textarea name="comment[text]" rows="10" cols="60"></textarea>
+        <br />
+        <label><b>Author</b></label>
+        <input type="text" name="comment[author]" />
+        <input type="submit" value="Submit" />
+        </form>
+        </div>
+      </div>
+        </dd>
+        <% } %>
+        </dl>
+        </td>
+    </tr>
+    <% } %>
+    
+    <tr>
+        <th>Comments</th>
+        <td>
+            <ol>
+            <% for(var ci in comments){ c = comments[ci]; %>
+            <li><%- c.body %>(Section <%- c.section %>)</li>            
+<%  } %>
+        </ol>
+    </tr>
+</table>
+
+
+<p><a href="/pages/<%- page._id %>/reindex" class="button submit">Reindex</a></p>
+<p><a href="/pages/<%- page._id %>/spider" class="button submit">Spider</a></p>

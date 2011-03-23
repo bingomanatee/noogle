@@ -1,0 +1,28 @@
+<%
+if (typeof user == 'undefined'){
+  user = false;
+}
+%><html>
+    <head>
+        <title>Noogle</title>
+        <link rel="stylesheet" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css" />
+        <link rel="stylesheet" href="/style.css" />
+        <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    </head>
+    <body>
+      <div id="headline"><h1>Noogle</h1></div>
+      <table id="main">
+        <tr>
+          <td id="navigation">
+        <%- partial('menu') %>
+        </td>
+        <td id="content">
+        <%- partial('messages') %>
+        <%- body %>
+ 
+        <td>
+          </tr>
+      </table> 
+    </body>
+    <div id="footer">&COPY;2010 Wonderlandlabs.com</div>
+</html>

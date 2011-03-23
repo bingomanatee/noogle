@@ -1,0 +1,25 @@
+<ul>
+<li><a href="/">Noogle</a></li>
+<li><form method="post" action="/search/">
+<input type="text" name="search" id="search_field" /><input type="submit" class="button submit" value="Find" /></form></li>
+<li><a href="/nicks/">Contributors</a></li>
+<li><a href="/pages/">Pages</a></li>
+<% if (session_user){ %>
+<li><%= session_user._id %> (<a href="/logout">Log out</a>)</li>
+<% } else { %>
+<li><a href="/login">Log In</a></li>
+<li><a href="/users/0/add"><small>Register</small></a></li>
+<% } %>
+<li><span onClick="$('#doc_menu').toggle()"><img src="/images/tip.png" /></span>
+    <a href="/doc/">Node Documentation</a></li>
+</ul>
+<div id="doc_menu" style="display:none">
+    <ul>
+        <% doc_menu_items.forEach(function(item){ %>
+        <li>
+            <a href="/doc/<%= item._id %>"><%- item.name %></a>
+        </li>
+        <% }) %>
+    </ul>
+    
+</div>

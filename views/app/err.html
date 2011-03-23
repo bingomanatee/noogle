@@ -1,0 +1,23 @@
+<h1>Error</h1>
+
+<p>An error has occured: </p>
+
+<dl>
+    <% for (var p in err){ %>
+    <dt><%= p %></dt>
+    <dd><% switch(p) {
+        case 'message':
+          var echo ='<b>' + err[p] + '</b>';
+        break;
+        case 'stack':
+           var echo = '<pre>' + err[p] + '</pre>';
+        break;
+        
+        default:
+        var echo = err[p];
+    }
+    %>
+    <%- echo %>
+    </dd>
+    <% } %>
+</dl>

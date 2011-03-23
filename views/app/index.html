@@ -1,0 +1,11 @@
+<h1>Welcome to Noogle</h1>
+
+<p>A search engine for the Node IRC channel</p>
+
+<h3>Most Awesome Words</h3>
+<p>The most bodaicous words in IRC chat listed in descending order of radicalness</p>
+<p>
+    <% data.forEach(function(item){ %>
+    <a href="/search/<%- item._id %>"><%- item._id %></a><small>: <%- item.value %></small>, 
+    <% }) %>
+</p>

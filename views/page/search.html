@@ -1,0 +1,18 @@
+<h1>Search Results</h1>
+<div id="search_results">
+<% for (var l in linesets){
+    var lineset = linesets[l];
+    %>
+
+<h2><%- lineset.url %></h2>
+<ul>
+    <% for (var lsid in lineset.lines){
+        var line = lineset.lines[lsid];
+    %>
+    <li><b><small><%- line.time %></small></b>
+    <a href="/lines/<%-line._id %>"><%= line.text.replace(new RegExp('^' + line.nick + '(:)?'), '') %></a> <small><%- line.nick %></small>   
+    </li>
+    <% } %>    
+</ul>
+<% } %>
+</div>

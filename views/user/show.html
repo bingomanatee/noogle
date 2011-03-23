@@ -1,0 +1,18 @@
+<h1>Viewing User &quot;<%= user._id %>&quot;</h1>
+
+<dl>
+  <dt>Username</dt>
+  <dd><%- user._id %></dd>
+  <% if (user.name) { %>
+  <dt>Real Name</dt>
+  <dd><%- user.name %></dd>
+  <% } %>
+  <dt>Alternate Nicks</dt>
+  <dd>
+    <ul>
+      <% for(var i in user.nicks){ var nick = user.nicks[i]; %>
+      <li><%- nick %></li>
+      <% } %>
+    </ul>
+  </dd>
+</dl>

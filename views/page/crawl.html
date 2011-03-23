@@ -1,0 +1,31 @@
+<h1>Noogle New Pages</h1>
+<table cellpadding="1em">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Path</th>
+            <th>Last Indexed</th>
+            <th>View</th>
+            <th>Index</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% if (pages){ pages.forEach(function(page){
+        console.log(page);
+        %>
+        <tr>
+            <td><%- page.name %></td>
+            <td><%- page.url %></td>
+            <td><%- page.indexed %></td>
+            <td><a href="/pages/<%- page._id %>" class="button">View</a></td>
+            <td><a href="/pages/<%- page._id %>/reindex" class="button submit">Index</a></td>
+        </tr>
+        <% }) } else { %>
+        <tr>
+            <td>(no pages)</td>
+            <td>&nbsp;</td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>

@@ -1,0 +1,256 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 110%/1.4 "Helvetica Nueue", "Lucida Grande", Arial, sans-serif;
+  background-color: rgb(225,225,225);
+}
+
+a {
+  color: rgb(15, 0, 150);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+li {
+  margin-left: 2em;
+}
+
+ul li{
+  list-style-type: disc;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+ol, ul, dl{
+  margin-top: 0.5em, margin-bottom: 0.5em
+}
+
+p {
+  margin-top: 0.25 em, margin-bottom: 0.5em
+}
+
+h1, h2, h3, h4 {
+font-family: Helvetica Neue, Helvetica, Geneva, sans-serif;
+color: rgb(90, 0, 0);
+font-weight: bold;
+margin-bottom: 0.75em;
+margin-top: 0.25em;
+}
+
+h1{ font-size: 200%; text-transform: uppercase; border-bottom: 1px solid rgb(255, 225, 225)}
+h2{ font-size: 150%}
+h3, h4, h5{ font-size: 120%; color: rgb(180, 0, 0)}
+
+dt { font-weight: bold; width: 5em; display: block}
+dd { margin-left: 6em;}
+
+#main {
+  width: 100%;
+}
+#messages {
+  width: 95%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #00DD00;
+  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+#messages li {
+  list-style: none;
+}
+
+#messages em {
+  font-weight: bold;
+}
+
+#headline {
+  background-color: rgb(200,200,200);
+  padding: 0.5em;
+}
+#headline h1 {
+  color: white;
+  font-size: 150%;
+  margin: 0px;
+  border-bottom: none
+}
+#content {
+  padding: 1em;
+}
+
+option:hover {
+  background-color: rgb(204, 204, 153);
+}
+
+#navigation {
+  background-color: rgb(225,225,225);
+  width: 250px; 
+  float: left;
+  margin-right: 12px;
+  vertical-align: top;
+  padding-top: 0.5em;
+}
+#navigation a {
+  font-weight: bold;
+}
+
+#navigation ul li {
+  list-style: none;margin-left: 1em;
+}
+#doc_menu ul li a {
+  font-weight: normal;
+  font-size: 80%;
+}
+#doc_menu ul li {
+  font-weight: normal;
+  font-size: 80%;
+  padding: 0em;
+  padding-left: 2em;
+  margin: 0em;
+}
+
+#content {
+  background-color: white;
+  float: left;
+  break: after;
+}
+
+#footer {
+  background-color: rgb(225,225,225);
+  padding: 0.5em; 
+  text-align: center;
+  color: gray;
+  font-size: 80%;
+}
+
+a.edit {
+  color: rgb(100, 90, 0);
+  font-size: 80%;
+  font-weight: bold;
+  margin-left: 2em; 
+}
+
+.button {
+  display:inline-block;
+  border: 1px solid grey;
+  background-color: rgb(240, 240, 240);
+  font-family: Geneva, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: rgb(40, 40, 40);
+  padding: 4px 8px;
+  margin: 0 1em;
+}
+
+.button:hover{
+  color: rgb(0, 0, 102);
+}
+
+.submit{
+   background-color: rgb(200, 255, 220);
+   border-color: rgb(100, 120, 100);
+}
+
+#report td,
+#report th {
+  padding: 0em 1em;
+}
+
+#report th {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid grey;
+  background-color: rgb(200, 200, 200);
+}
+
+#search_field {
+  border: 1px solid grey;
+  width: 120px;
+}
+
+table#lines {
+  font-family: Monaco, courier, monospace;
+  font-size: 80%;
+}
+
+table#lines th {
+  font-weight: bold;
+  background-color: rgb(210, 210, 210);
+  padding: 2px 0.5em;
+}
+
+table#lines tr.o td {
+  background-color: rgb(220, 220, 250);
+  padding: 2px;
+}
+
+table#lines tr.focus {
+  background-color: (204, 204, 153)!important;
+  font-weight: bold;
+}
+
+#search_results h2 {
+  color: black;
+  font-size: 66%;
+  font-weight: normal;
+  border-bottom: 1px solid rgb(200, 170, 170);
+  margin-top: 0.75em;
+  margin-bottom: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+#search_results a{
+  color: rgb(0, 0, 160);
+  text-decoration: none;
+  font-size: 120%;
+  font-weight: normal;
+}
+
+#search_results a:hover {
+  text-decoration: underline;
+  color: red;
+}
+
+#search_results li b{
+  color: rgb(150, 150, 150);
+  font-weight: normal;
+}
+
+#search_results li {color: rgb(204, 204, 204); font-size: 80%; list-style: none }
+#search_results li:hover{color: black; }
+
+.lines_chart td {
+  font-family: Helvetica, geneva, sans-serif;
+  font-size: 80%;
+  color: rgb(120, 120, 120);
+}
+
+.lines_chart .line_bar {
+  background-color: black; padding: 2px;
+  font-size: 80%;
+  color: white;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: right;
+  border: 1px solid blue;
+}
+
+
+#nicks a {
+  color: rgb(0, 0, 150);
+  font-weight: normal;
+}
+
+#nicks a.alias { color: grey}
+
+#nicks a.min { font-size: 40%}
+
+#nicks  a.small { font-size: 60%}
+
+#nicks a.med { font-size: 80%}
+
+#nicks  a.large { font-size: 120%}
+
+#nicks a.max { font-size: 150%}

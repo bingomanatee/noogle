@@ -1,0 +1,23 @@
+<h1>Lines in page &quot;<%- url %>&quot;</h1>
+
+<dl>
+    <% for (var i = 0; i < lines.length; ++i) { %>
+    <dt><%- lines[i].nick %></dt>
+    <dd><%- lines[i].text %></dd>
+    <% } %>
+</dl>
+
+<div style="width: 400px; height: 500px; overflow: scroll; border: 1px solid black">
+    <pre>
+        <%- txt %>        
+    </pre>
+    
+</div>
+
+<h2>Words in text:</h2>
+
+<ul>
+    <% words.forEach(function (words, freq){ %>    
+    <li><b><%- freq %></b>: &quot;<%- words.join('&quot;, &quot;') %>&quot;</li>
+    <% }) %>
+</ul>

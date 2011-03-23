@@ -1,0 +1,71 @@
+<h1>Pages</h1>
+
+<form method="post" action="/pages/0/reindex">
+    <p>
+    <input type="submit" class="button submit" name="submit" value="Reindex Checked" />
+</p>
+<table id="report" cellpadding="1em" style="font-size: 80%">
+    <thead>
+        <tr>
+            
+            <th><input type="checkbox" name="checkall" id="checkall"></th>
+            <th>Name</th>
+            <th>Path</th>
+            <th>State</th>
+            <th>Type</th>
+            <th>Last Indexed</th>
+            <th>View</th>
+            <th>Index</th>
+            <th>Spider</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% var new_count = 5;
+        if (pages){ pages.forEach(function(page){
+        
+        if (page.indexed)
+        {
+  //      console.log('date: ');
+    //    console.log(page.indexed);
+        
+            var indexed = new Date(page.indexed);
+            var indexed_date = indexed.getDate() + '.' + (indexed.getMonth() + 1) + '.' + indexed.getFullYear();
+        } else {
+            var indexed_date = '--';
+        }
+        
+        %>
+        <tr>
+            <td><input name="page_ids[]" type="checkbox" <% if ((new_count > 0) && (!page.indexed)) { --new_count; %> checked="checked" <% } %> value="<%- page._id %>" />
+            <td><%- page.name %></td>
+            <td><%- page.url %></td>
+            <td><%- page.deleted ? 'deleted' : '&nbsp;' %></td>
+            <td><%- page.type %></td>
+            
+            <td><%- indexed_date %></td>
+            <td><a href="/pages/<%- page._id %>" class="button">View</a></td>
+            <td><a href="/pages/<%- page._id %>/reindex" class="button">Index</a></td>
+            <td><a href="/pages/<%- page._id %>/reindex" class="button">Spider</a></td>
+        </tr>
+        <% })} %>
+    </tbody>
+</table>
+<p>
+    <input type="submit" class="button submit" name="submit" value="Reindex Checked" />
+</p>
+<p>
+    <input type="submit" class="button submit" name="submit" value="Delete Checked" />
+</p>
+</form>
+<p>
+    <a href="/pages/0/add" class="button">New Page</a>    
+</p>
+<script language="javascript">
+$('#checkall').click(
+   function()
+   {
+      $("INPUT[type='checkbox']").attr('checked', $('#checkall').is(':checked'));   
+   }
+)
+</script>

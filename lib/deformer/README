@@ -1,0 +1,82 @@
+This is an alpha version of a basic form generator. I have taken the assumption that you like me are in love with tables and want your labels in TH's and your fields in TD's. Check the test script for a sample field data format. 
+
+Along with this is a basic HTML utility including (of course) a function for HTML table generation and general tag construction. 
+
+Some work has been done for file-based form caching. 
+
+One sample use case: this is a form a MVC controller creating "metasystem":
+
+var fs        = require('fs');
+var deformer  = new require('./../../lib/deformer/deformer');
+
+var fields = {
+    'controller[name]': {
+        type: deformer.TEXT,
+        label: 'Name',
+        required: true,
+        doc: 'filename for controller: alphanums and underscores'
+    },
+    'controller[doc]': {
+        type: deformer.TEXTAREA,
+        label: 'Documentation'
+    },
+    'controller[actions]': {
+        type: 'checkbox',
+        label: 'Actions',
+        options:
+        [
+          {
+              name: 'controller[actions]',
+              label: 'index',
+              value: 'index',
+              on: true
+          },
+          {
+              name: 'controller[actions]',
+              label: 'show',
+              value: 'show',
+              on: true
+          },
+  
+          {
+              name: 'controller[actions]',
+              label: 'edit and create',
+              value: 'edit+create',
+              on: true
+          },
+          {
+  
+              name: 'controller[actions]',
+              label: 'update',
+              value: 'update',
+              on: false
+          },
+  
+          {
+              name: 'controller[actions]',
+              label: 'delete and destroy',
+              value: 'delete+destroy'
+          }
+        ]
+    },
+    submit: {
+        type: 'submit',
+        label: 'Save Chapter',
+        value: 'Save'
+    }
+}
+
+var form_props = {
+    action: '/metas/0', // should be overrridden below
+    method: 'post'
+}
+
+module.exports.form = function (values) {
+    // this is a function that decorates the Deformer form creation process,
+    // not a class
+    var form = new deformer.Form(fields, form_props);
+    if (values) {
+        form.set_values(values);
+    }
+    return form;
+}

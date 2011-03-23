@@ -1,0 +1,93 @@
+
+<h1>Spider: index links on this page</h1>
+<h2>Page</h2>
+<dl>
+    <dt>Name</dt>
+    <dd><%- page.name %></dd>
+    <dt>Url</dt>
+    <dd><%- page.url %></dd>
+    <dt>Type</dt>
+    <dd><%- page.type %></dd>
+    <dt>Indexed</dt>
+    <dd><%- page.indexed %></dd>
+</dl>
+<hr />
+<form method="post" action="/pages/<%- page._id%>/crawl">
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" name="checkall" id="checkall"></th>
+
+                <th>Link</th>
+
+                <th>Type</th>
+            </tr>
+                     <tr>
+                <th>&nbsp;</th>
+
+                <th align="right"><b>Default Page Type: </b></th>
+
+                <th><select name="spider[default_link_type]">
+
+                    <option value="irc">
+                        IRC page (chunk lines):
+                    </option>
+
+                    <option value="page">
+                        Standard Page
+                    </option>
+                    
+                    <option value="documentation">
+                        Documentation
+                    </option>
+
+                    <option value="index">
+                        Index Page (ignore text - follow links)
+                    </option>
+                </select></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for (var index in page.links){ link = page.links[index]; %>
+            <tr>
+                <td><input type="checkbox" name="spider[link][]" value="<%- link %>"></td>
+
+                <td><%- link.replace(new RegExp('^' + page.url), '[page]') %></td>
+
+                <td><select name="spider[link_type][<%- link %>]">
+                    <option value="default">
+                        (default)
+                    </option>
+
+                    <option value="page">
+                        Standard Page
+                    </option>
+
+                    <option value="index">
+                        Index Page (ignore text - follow links)
+                    </option>
+                    
+                    <option value="documentation">
+                        Documentation
+                    </option>
+
+                    <option value="irc">
+                        IRC page (chunk lines):
+                    </option>
+                </select></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <p><input type="submit" value="Add Checked Links"></p>
+</form>
+<script language="javascript">
+$('#checkall').click(
+   function()
+   {
+      $("INPUT[type='checkbox']").attr('checked', $('#checkall').is(':checked'));   
+   }
+)
+</script>

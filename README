@@ -1,0 +1,61 @@
+MVC is an attempt to create components with self contained models controllers and views
+
+Hopefeully these packages can be used to create interrelated applications and shared problem solvers
+
+INSTALLIG NOOGLE LOCALLY
+
+Noogle relies on node v.0.2.6. Higher installs have changed the way that post parameters are interpreted.
+
+It uses the latest Mongo v.1.6. Upcoming Mongos might change the way that Map/Reduce works so they aren't
+guaranteed to be compatible with Noogle.
+
+Noogle is not currently real time - data must be loaded manually.
+
+RUNNING UPDATE JOBS
+
+First use the "init" job to add the index page.
+
+Run the app (node index.js); click pages, then click on the (only) page in the list; click "Spider" -
+that will add all the links on that page as subpages.
+
+Back on the console, browse to the "jobs" folder and run in order, ONE AT A TIME:
+
+node reindex.js
+node word_freq.js
+node load_nicks.js
+node update_nick_line_count.js
+node auto_alias.js
+
+Index the lines database on words, then nick (two seperate insureIndex() calls)
+
+ROADMAP FOR NOOGLE
+
+Noogle as it stands pretty much does the fundamental task of allowing you to find a conversation about a given topic. There are a few more wish list 
+features I have and a few roads I am currently developing. 
+
+0: Add Dynamic Updating
+  Right now the Noogle database updates when I upload a new data file set to the server. This is obviously not how a search engine is supposed to work. 
+  Re-scripting the data spider to update incrementally is going to be a big win. 
+
+1: Nick Centric Features
+   I already have a view nick system (not live) in git, with a nick page that lists lines per day graphically. Because IRC often forces you to use a synonym
+   if you are on multiple machines I am trying to reconcile bingomanatee with bingomanatee_, bingomanatee__ to give a true aggregate report.
+   
+   Once that is complete I also want to generate a "personal tag cloud" of words that each nick uses. (watch your swears boys!).
+   * in process - nicks and logins done, work needs to be done in coordinating them.
+   * TODO: an ACL system to lock out non - me people from playing with the pages.
+   
+1.1 Logins 
+   I also want to build up a login system around nicks so people can "Claim" identities.  This would give you the option of adding user pics, getting an RSS feed, contributing an article, et all. 
+
+2. Interactive Node.js chatting
+. It would be great if I can build Noogle up into an IRC chat engine where people can go, chat, save snippets of text for future reference, etc., so that, for instance, when you type a question, you get instant noogle results and/or FAQ hits. 
+
+3. FAQ builder
+  I would like the ability to "sculpt" a search result into a FAQ, by removing nonparticipant nicks from a conversation, cropping it, and highlighting useful answer comments from the general text flow. That way we can have a FAQ page that browsers can build up, rate answers, and build a dictionary
+of node help. 
+
+4. Convert the search engine to SOLR
+  I built up the current system in MongoDB partly because I wanted to get under the hood of Christkov-native. That being done, SOLR is a much better
+  text search engine and I would like to export the search function to it ASAP. 
+

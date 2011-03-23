@@ -1,0 +1,38 @@
+{
+    "fields": {
+        "page[_id]" : {
+          "type": "hidden"  
+        },
+        "page[name]": {
+            "type": "text",
+            "label": "Name",
+            "required": true,
+            "doc": "Label for repository"
+        },
+        "page[url]": {
+            "type": "text",
+            "label": "Url",
+            "required": true,
+            "doc": "domain: no http:// or slashes"
+        },
+        "page[type]": {
+            "type": "select",
+            "label": "Page Type",
+            "value": "page",
+            "options": {
+                "page": "Standard Page",
+                "index": "Index Page (ignore text - follow links)",
+                "irc": "IRC page (chunk lines):"
+            }
+        },
+        "submit": {
+            "type": "submit",
+            "value": "Add Repository",
+            "className": "button submit"
+        }
+    },
+    "props": {
+        "action": "/pages/0/",
+        "method": "post"
+    }
+}

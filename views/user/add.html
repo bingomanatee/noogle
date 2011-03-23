@@ -1,0 +1,16 @@
+<h1>Register as a new member</h1>
+
+<% 
+try {
+%>
+<%- form.render() %>
+<%
+} catch(err) {
+console.log('error rendering form: ');
+console.log(err);
+}
+%>
+
+<p>The username you choose will be assumed as one of your #node.js nicks.</p>
+<p>You don't have to expose your real name if you don't want to - but if you do,
+it will be shared on your public profile.</p>

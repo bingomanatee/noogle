@@ -1,0 +1,18 @@
+<h1>Content Repositories</h1>
+<% if ( contents) { %>
+<dl>
+<% for(var prop in contents){
+var content = contents[prop];
+%>
+<dt><%- content.name %></dt>
+<dd><form action="/contents/<%-content._id %>/refresh" method="get">
+<a href="/contents/<%- content._id %>"><%- content.url %></a>
+<input type="submit" value="Refresh" /></form> </dd>
+<%} %>
+</dl>
+<% } else { %>
+<p>-- no content </p>
+<% } %>
+<h2>Add Domain</h2>
+
+<%- form.render() %>

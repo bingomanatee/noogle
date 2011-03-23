@@ -1,0 +1,8 @@
+<h1>Repository added</h1>
+<pre>
+    <% for (var p in contents){
+     if(typeof(contents[p]) == 'undefined') continue;
+    %>
+    <%- p %>: <%- contents[p] %>
+    <% } %>
+</pre>

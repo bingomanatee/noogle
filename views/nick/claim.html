@@ -1,0 +1,9 @@
+<h1>Also Known As...</h1>
+
+<p>Is the nickname <b style="font-size: 150%"><%- nick_name %></b>
+an alias for the revered, canonical  <b style="font-size: 150%"><%- nick.canonical_nick %></b>?</p>
+
+<form action="/nicks/<%- nick.canonical_nick %>/claim/<%- nick_name %>" method="post" >
+<p><input type="submit" class="button submit" value="Phluck YEAH!" /></p>
+</form>
+<p><a href="/nicks/<%- nick.canonical_name %>" class="button" >As If!</a></p>

@@ -1,0 +1,43 @@
+<% console.log('story partial story: '); console.log(story); %>
+<dl>
+  <dt>Title</dt>
+  <dd><%= story.name %></dd>
+  <dt>Text</dt>
+  <dd><%= story.text %></dd>
+</dl>
+
+<% if (edit) { %>
+
+<p><a href="/storys/<%- story.id %>/edit" class="edit">Edit Story</a></p>
+
+<%  } // end if edit
+ %>
+ 
+<% if (show_chapters) { %>
+<hr />
+<h2>Chapters</h2>
+<ol>
+  <% if (chapters) chapters.forEach(function (chapter) { %>
+    <li><a href="/chapters/<%- chapter.id %>"><%- chapter.id %>: <%- chapter.name %></a>
+<% if (edit ) { %> 
+<a href="/chapters/<%- chapter.id %>/edit" class="edit">Edit Chapter</a>
+<% } %>
+    </li>
+<%  }) %>
+  
+</ol>
+
+<% if (edit) { %>
+
+<p><a href="/chapters/<%- story.id %>/add" class="edit">Add Chapter</a></p>
+
+<%  } // end if edit
+ %>
+<hr />
+<%  } // end if chapters
+ %>
+<% if (chapters.length) { %>
+<p class="buttonbar">
+  <a href="/chapters/<%- chapters[0].id %>">READ STORY</a>
+</p>
+<% } %>

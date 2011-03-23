@@ -1,0 +1,33 @@
+[00:02] onar_ has joined the channel
+[00:06] onar has joined the channel
+[00:24] jacobolus has joined the channel
+[00:32] bronson: technoweenie, how would you picture working with yajl? pass in chunks, and when a full JSON object is assembled it will pass it to a promise callback?
+[00:32] bronson: i.e. it would just assemble the result itself, no need for any intermediate access?
+[00:33] charlenopires has joined the channel
+[00:33] technoweenie: bronson: yajl has sax events
+[00:34] technoweenie: just let me setup listeners in javascript
+[00:34] eddanger has joined the channel
+[00:34] technoweenie: i'd just like to add a listener to an event that fires everytime the parser finishes a complete json object
+[00:35] eddanger has left the channel
+[00:35] technoweenie: there's a ruby example: http://github.com/brianmario/yajl-ruby
+[00:35] technoweenie: @parser.on_parse_complete = method(:object_parsed)
+[00:36] blackdog`: i'm using childprocess, do i need to add an EOL or something to what I write, or a flush? I'm not getting a lot of response back from the child?
+[00:39] richtaur has joined the channel
+[00:51] ryah: blackdog`: it's possible there is a bug somehwer there
+[00:51] ryah: blackdog`: but do make sure you send a message first from your child process to the parent
+[00:51] ryah: (you might be messaging the child process before its stdin is open)
+[00:52] blackdog`: aha
+[00:52] blackdog`: ok, I'm not doing that
+[00:55] mahemoff_ has joined the channel
+[00:57] blackdog`: ok, getting something back now, thanks
+[00:57] ryah: cool
+[00:58] mahemoff_ has joined the channel
+[01:07] blackdog`: ryah: child.write('fdfd') -> true, then i have to do another to get the desired result? 
+[01:08] blackdog`: i can repeat that at the repl, first time true, second time result
+[01:08] ryah: ?
+[01:08] blackdog`: the child.write returns true
+[01:08] blackdog`: first time, on a second iteration i get what i want
+[01:09] joshbuddy_ has joined the channel
+[01:10] blackdog`: ok, nevermind, maybe i haven't read the whole stream or something
+[01:11] bpot has joined the channel
+[01:13] mahemoff has joined the channel

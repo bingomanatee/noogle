@@ -1,0 +1,106 @@
+496176
+> db.lines.count();
+670238
+> map_function = function() { this.words.forEach(function(word){ emit(word, 1)}) }
+function () {
+    this.words.forEach(function (word) {emit(word, 1);});
+}
+> reduce_function = function (k, vals){
+... for (index in current) {
+... map_function = function() { this.words.forEach(function(word){ emit(word, 1)}) ^C
+> reduce_function = function (prev, current) { var count = 0; for (index in current) { count += current[index]; }  return count; }
+function (prev, current) {
+    var count = 0;
+    for (index in current) {
+        count += current[index];
+    }
+    return count;
+}
+> db.runCommand({"mapreduce": "lines", "map": map_function, "reduce" : reeduce_function, "out": "word_freq"}) 
+Mon Jan 24 02:50:42 ReferenceError: reeduce_function is not defined (shell):0
+> db.runCommand({"mapreduce": "lines", "map": map_function, "reduce" : reduce_function, "out": "word_freq"}) 
+{
+	"result" : "word_freq",
+	"timeMillis" : 353880,
+	"counts" : {
+		"input" : 670238,
+		"emit" : 6145897,
+		"output" : 134681
+	},
+	"ok" : 1
+}
+> show collections; 
+lines
+pages
+system.indexes
+word_freq
+> db.word_freq.find().sort({count: -1}).limit(20);
+{ "_id" : "0", "value" : 10385 }
+{ "_id" : "00", "value" : 494 }
+{ "_id" : "000", "value" : 360 }
+{ "_id" : "0000", "value" : 16 }
+{ "_id" : "00000", "value" : 3 }
+{ "_id" : "000000", "value" : 17 }
+{ "_id" : "0000000", "value" : 1 }
+{ "_id" : "00000000", "value" : 9 }
+{ "_id" : "000000000", "value" : 1 }
+{ "_id" : "00000000000000000000", "value" : 1 }
+{ "_id" : "0000000000a709d0", "value" : 1 }
+{ "_id" : "00000001", "value" : 1 }
+{ "_id" : "0000001", "value" : 1 }
+{ "_id" : "00002", "value" : 1 }
+{ "_id" : "00002ms", "value" : 1 }
+{ "_id" : "00008000", "value" : 2 }
+{ "_id" : "000095399", "value" : 2 }
+{ "_id" : "0000n", "value" : 2 }
+{ "_id" : "0000rp", "value" : 1 }
+{ "_id" : "0001", "value" : 23 }
+> db.word_freq.find().sort({value: -1}).limit(20);
+{ "_id" : "the", "value" : 179615 }
+{ "_id" : "to", "value" : 145900 }
+{ "_id" : "a", "value" : 129444 }
+{ "_id" : "it", "value" : 109034 }
+{ "_id" : "I", "value" : 92968 }
+{ "_id" : "is", "value" : 89807 }
+{ "_id" : "you", "value" : 81317 }
+{ "_id" : "that", "value" : 79249 }
+{ "_id" : "and", "value" : 72723 }
+{ "_id" : "in", "value" : 65310 }
+{ "_id" : "i", "value" : 64593 }
+{ "_id" : "of", "value" : 61137 }
+{ "_id" : "for", "value" : 56539 }
+{ "_id" : "node", "value" : 51757 }
+{ "_id" : "http", "value" : 48278 }
+{ "_id" : "on", "value" : 43295 }
+{ "_id" : "but", "value" : 41820 }
+{ "_id" : "be", "value" : 38400 }
+{ "_id" : "with", "value" : 37599 }
+{ "_id" : "not", "value" : 36611 }
+> db.word_freq.find().sort({value: -1})           
+error: { "$err" : "too much data for sort() with no index", "code" : 10129 }
+> db.ensureIndex({word: 1, value: -1})
+Mon Jan 24 02:58:50 TypeError: db.ensureIndex is not a function (shell):0
+> db.word_freq.ensureIndex({word: 1, value: -1})
+> db.word_freq.find().sort({value: -1})         
+error: { "$err" : "too much data for sort() with no index", "code" : 10129 }
+> db.word_freq.ensureIndex({value: -1})
+> db.word_freq.find().sort({value: -1})
+{ "_id" : "the", "value" : 179615 }
+{ "_id" : "to", "value" : 145900 }
+{ "_id" : "a", "value" : 129444 }
+{ "_id" : "it", "value" : 109034 }
+{ "_id" : "I", "value" : 92968 }
+{ "_id" : "is", "value" : 89807 }
+{ "_id" : "you", "value" : 81317 }
+{ "_id" : "that", "value" : 79249 }
+{ "_id" : "and", "value" : 72723 }
+{ "_id" : "in", "value" : 65310 }
+{ "_id" : "i", "value" : 64593 }
+{ "_id" : "of", "value" : 61137 }
+{ "_id" : "for", "value" : 56539 }
+{ "_id" : "node", "value" : 51757 }
+{ "_id" : "http", "value" : 48278 }
+{ "_id" : "on", "value" : 43295 }
+{ "_id" : "but", "value" : 41820 }
+{ "_id" : "be", "value" : 38400 }
+{ "_id" : "with", "value" : 375

@@ -1,0 +1,45 @@
+<h1>Noogle Indexed Pages</h1>
+
+<form method="post" action="pages/0/reindex">
+<table cellpadding="1em" style="font-size: 80%">
+    <thead>
+        <tr>
+            
+            <th><input type="checkbox" name="checkall" id="checkall"></th>
+            <th>Name</th>
+            <th>Path</th>
+            <th>Type</th>
+            <th>Last Indexed</th>
+            <th>View</th>
+            <th>Index</th>
+            <th>Spider</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% if (pages){ pages.forEach(function(page){ %>
+        <tr>
+            <td><input name="page_ids[]" value="<%-page._id" />
+            <td><%- page.name %></td>
+            <td><%- page.url %></td>
+            <td></td>
+            <td><%- page.indexed %></td>
+            <td><a href="/pages/<%- page._id %>" class="button">View</a></td>
+            <td><a href="/pages/<%- page._id %>/reindex" class="button">Index</a></td>
+            <td><a href="/pages/<%- page._id %>/reindex" class="button">Spider</a></td>
+        </tr>
+        <% }) } else { %>
+        <tr>
+            <td>(no pages)</td>
+            <td>&nbsp;</td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<p>
+    <input type="submit" class="button submit" value="Reindex Checked" />
+</p>
+</form>
+<p>
+    <a href="/pages/0/add">New Page</a>    
+</p>

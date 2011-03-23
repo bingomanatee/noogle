@@ -1,0 +1,9 @@
+<h1><%- nicks.length %> <%- title ? title : 'Contributors' %></h1>
+
+<p>Nicks that are not aliases of other nicks, and who have over 50 lines of content logged</p>
+
+<div id="nicks">
+    <% for(var i in nicks) { var nick = nicks[i]; %>
+      <a href="/nicks/<%= nick._id %>" class="<%- nick.class_name %>"><%= nick._id %> <%- nick.is_alias ? '<small>AKA ' + nick.alias_of + ')' : '' %></a>
+    <% } %>
+</div>

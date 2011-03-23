@@ -1,0 +1,12 @@
+<h1>Conversation</h1>
+
+<table id="lines">
+    <% lines.forEach(function(lines_line, i){ %>
+    <tr class="<%- i % 2 ? 'e' : 'o'%><%- line._id.toString() == lines_line._id.toString() ? ' focus' : '' %>" >
+        <th><%= lines_line.nick %></th>
+        <td><%- lines_line.text ? lines_line.text.replace(new RegExp('^' + lines_line.nick + '(:)?', 'i'), '') : '' %></td>
+        <td class="t"><%- lines_line.time %></td>
+        <td><%- JSON.stringify(lines_line) %></td>
+    </tr>
+    <% }) %>
+</table>

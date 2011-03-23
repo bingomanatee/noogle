@@ -1,0 +1,19 @@
+<h1>Page &quot;<%- contents.name %>&quot;</h1>
+
+<dl>
+    <dt>Name</dt>
+    <dd><%- contents.name %></dd>
+    
+    <dt>URL</dt>
+    <dd><%- contents.url %></dd>
+</dl>
+
+<% if (links) { %>
+
+<p><small>
+<% for (var i in links){ %>
+ <a href="/contents/<%- (links[i]._id)  %>/index"><%- links[i].to %></a>,
+<% } %>
+</small>
+</p>
+<% } %>

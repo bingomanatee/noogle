@@ -1,0 +1,10 @@
+{
+    "_id": "mongoid",
+    
+    "nicks": "string[]",
+    
+    "base_nick": "string",
+    
+    "real_name": "string"
+    
+}

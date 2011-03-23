@@ -1,0 +1,64 @@
+<h1>Page</h1>
+
+
+<dl>
+    <dt>Name</dt>
+    <dd><%- page.name %></dd>
+    <dt>Url</dt>
+    <dd><%- page.url %></dd>
+    <dt>Type</dt>
+    <dd><%- page.type %></dd>
+    <dt>Indexed</dt>
+    <dd><%- page.indexed %></dd>
+</dl>
+<table>
+    <tr>
+<% if (page.hasOwnProperty('txt')){ %>
+        <td width="1*" align="left" valign="top">
+            <h3>Text</h3>
+<pre style="font-size: 50%"><%= page.txt %></pre>
+        </td>
+<% } %>
+<% if (page.hasOwnProperty('links')){ %>
+        <td width="1*" align="left" valign="top">
+            <h3>Links</h3>
+            <ul style="font-size: 50%">
+                <% page.links.forEach(function(link){ %><li><%- link %></li> <% }); %>
+            </ul>
+        </td>
+<% } %>
+    </tr>
+    <tr>
+        <% if (page.hasOwnProperty('comments)){ %>
+        <th>Comments</th>
+        <td>
+        </td>
+        <% } %>
+    </tr>
+    <% if (page.hasOwnProperty('sections')){ %>
+    <tr>
+        <td colspan="3"><dl>
+        <% for (var s in page.sections) { %>
+        <dt><%- s %></dt>
+        <dd><%- page.sections[s].content %>
+        <hr />
+        <form method="post" action="/pages/<%- page._id %>/comment">
+        <input type="hidden" name="comment[page]" value="<%- page._id %>" />
+        <input type="hidden" name="comment[id]" value="<%- s %>" />
+        <label><b>Comment:</b></label><br />
+        <textarea name="comment[text]"></textarea>
+        <br />
+        <label><b>Author</b></label>
+        <input type="text" name="comment[author]" />
+        <input type="submit" value="Submit" />
+        </form>
+        </dd>
+        <% } %>
+        </dl>
+        </td>
+    </tr>
+    <% } %>
+</table>
+
+<p><a href="/pages/<%- page._id %>/reindex" class="button submit">Reindex</a></p>
+<p><a href="/pages/<%- page._id %>/" class="button submit">Spider</a></p>

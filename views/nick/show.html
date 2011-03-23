@@ -1,0 +1,42 @@
+<h1>Contributor(s)</h1>
+
+<% nicks.forEach(function(nick){ %>
+<h2><%= nick.canonical_nick %></h2>
+
+<% if (nick.nicks && (nick.nicks.length > 1)) { %>
+<h3>A. K. A.</h3>
+
+<ul>
+    <% for (var i in nick.nicks) { %>
+    <li><%- nick.nicks[i] %></li>
+    <% } %> 
+</ul>
+<% } %>
+
+<h3>Lines per day</h3>
+<table class="lines_chart">
+    <tr><th>Day</th>
+        <th>Lines</th>
+    </tr>
+<%
+for (var i in nick.lines) {
+    var c = nick.lines[i];
+%>
+    <tr>
+        <td><%- c.date %></td>
+        <td><div class="line_bar" style=" width: <%- 5 * c.lines %>px"><%- c.lines %></div></td>
+    </tr>
+<% } %>
+</table>
+
+<% if (sims && (sims.length > 0)) { %>
+<h2>Alternate name for ... </h2>
+<ul>
+<% sims.forEach(function(s){ if (s == nick.canonical_nick){  %>
+    <li><%- s %></li>
+    <% } else { %>
+    <li><a href="/nicks/<%- s %>"><%- s %></a> <a href="/nicks/<%- nick.canonical_nick %>/claim/<%-s %>" class="button">Claim as alias of &quot;<%- nick.canonical_nick %>&quot;</a></li>    
+<% }}) %>
+</ul>
+<% } %>
+<% }) %>

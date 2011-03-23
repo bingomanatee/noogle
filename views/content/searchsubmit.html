@@ -1,0 +1,12 @@
+<h1>Search Results</h1>
+<% for (var i in results){ %>
+<ul>
+    <li><b><%- i %></b>: <% if (typeof(results[i]) == 'object') { %>
+    <ul>
+        <% for (var v in results[i]){ %>
+       <li><b><%- v %></b>: <%- results[i][v] %></li>
+     <% } %>
+    </ul>
+     <% } else { %><%= results[i] %></ul><% } %>
+</ul>
+<% } %>
